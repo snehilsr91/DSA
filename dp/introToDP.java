@@ -11,22 +11,19 @@ class introToDP {
         return n;
         if(dp[n]!=-1)
         return dp[n];
-        long fnm1= recursiveHelper(n-1, dp);
-        long fnm2= recursiveHelper(n-2, dp);
-        dp[n-1]=fnm1;
-        dp[n-2]=fnm2;
-        return fnm1+fnm2;
+        return recursiveHelper(n-1, dp)+recursiveHelper(n-2, dp);
     }
 
     //Tabulation
     static long bottomUp(int n) {
         if(n<=1)
         return n;
-        int prev2=0;
-        int prev=1;
+        long prev2=0;
+        long prev=1;
         for(int i=2;i<=n;i++){
+            long curr=prev2+prev;
             prev2=prev;
-            prev=i;
+            prev=curr;
         }
         return prev;
     }
